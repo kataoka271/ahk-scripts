@@ -3,7 +3,7 @@ SendMode Input
 SetWorkingDir, %A_ScriptDir%
 CoordMode, Mouse, Screen
 
-log(hwnd) {
+logDebug(hwnd) {
     WinGet, pid, PID, ahk_id %hwnd%
     WinGet, name, ProcessName, ahk_id %hwnd%
     WinGetTitle, title, ahk_id %hwnd%
@@ -26,15 +26,11 @@ FocusOnMouse:
     If (wc != "Shell_TrayWnd" and wc != "Xaml_WindowedPopupClass" and wc != "TaskListThumbnailWnd") {
         IfWinNotActive, ahk_id %hwnd%
         {
-            log(hwnd)
+            logDebug(hwnd)
             WinActivate, ahk_id %hwnd%
         }
     }
     oldX := x
     oldY := y
     oldHWnd := hwnd
-    Return
-
-#x::
-    ExitApp
     Return
